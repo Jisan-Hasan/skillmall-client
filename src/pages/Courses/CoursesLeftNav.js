@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CoursesLeftNav = () => {
     const [courses, setCourses] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/categories")
+        fetch("http://localhost:5000/courses")
             .then((res) => res.json())
             .then((data) => setCourses(data))
             .catch((error) => {
