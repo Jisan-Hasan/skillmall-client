@@ -7,11 +7,13 @@ const CourseLayout = () => {
     return (
         <Container className="mt-5">
             <Row>
-                <Col lg="4"><CoursesLeftNav /></Col>
-                <Col lg="8"><Outlet /></Col>
+                <Col lg="3">
+                    <CoursesLeftNav />
+                </Col>
+                <Col lg="9">
+                    <Outlet />
+                </Col>
             </Row>
-            
-            
         </Container>
     );
 };
