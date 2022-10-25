@@ -3,7 +3,7 @@ import { Button, Col, Container, Image, Row } from "react-bootstrap";
 
 const Home = () => {
     return (
-        <div className="mt-5">
+        <div className="mt-5 pt-5">
             <Container>
                 <Row className="d-lg-flex justify-content-between align-items-center">
                     <Col lg="6">
