@@ -4,6 +4,7 @@ import Main from "../layout/Main";
 import Checkout from "../pages/Checkout/Checkout";
 import CourseDetails from "../pages/Courses/CourseDetails";
 import Courses from "../pages/Courses/Courses";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
@@ -13,6 +14,7 @@ export const routes = createBrowserRouter([
     {
         path: "/",
         element: <Main />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
