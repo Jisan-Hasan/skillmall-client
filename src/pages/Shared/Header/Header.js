@@ -50,8 +50,9 @@ const Header = () => {
                             {user?.uid ? (
                                 <>
                                     {user?.photoURL ? (
-                                        <Image
-                                            style={{ height: "40px" }}
+                                        <Image className="me-2"
+                                        title={user?.displayName}
+                                            style={{ height: "40px", width: "40px" }}
                                             src={user.photoURL}
                                             roundedCircle
                                         />
