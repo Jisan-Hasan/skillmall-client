@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
+import { useState } from "react";
 import { Button, Container, Image, Nav, Navbar } from "react-bootstrap";
-import { FaUser } from "react-icons/fa";
+import { FaLightbulb, FaRegLightbulb, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Header = () => {
+    const [theme, setTheme] = useState(true);
     const { user, logOut } = useContext(AuthContext);
     const handleSignOut = () => {
         logOut()
@@ -50,22 +52,37 @@ const Header = () => {
                             {user?.uid ? (
                                 <>
                                     {user?.photoURL ? (
-                                        <Image className="me-2"
-                                        title={user?.displayName}
-                                            style={{ height: "40px", width: "40px" }}
+                                        <Image
+                                            className="me-2"
+                                            title={user?.displayName}
+                                            style={{
+                                                height: "40px",
+                                                width: "40px",
+                                            }}
                                             src={user.photoURL}
                                             roundedCircle
                                         />
                                     ) : (
                                         <FaUser />
-                                    )}{" "}
+                                    )}
+
                                     <Button onClick={handleSignOut}>
                                         Sign Out
                                     </Button>
                                 </>
                             ) : (
-                                <Link to="/login">Login</Link>
+                                <Button><Link className="text-white text-decoration-none" to="/login">Login</Link></Button>
                             )}
+                            <Button
+                                onClick={() => setTheme(!theme)}
+                                className="mx-2"
+                            >
+                                {theme ? (
+                                    <FaRegLightbulb className="text-white" />
+                                ) : (
+                                    <FaLightbulb className="text-white" />
+                                )}
+                            </Button>
                         </Nav>
                         {/* <Nav.Link eventKey={2} href="#memes">
                             {}
