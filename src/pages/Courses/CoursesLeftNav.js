@@ -20,7 +20,7 @@ const CoursesLeftNav = () => {
                 <ListGroup variant="flush">
                     {courses.map((course) => (
                         <ListGroup.Item key={course.id}>
-                            <Link to={`/course/${course.id}`} className="text-decoration-none text-black">{course.title}</Link>
+                            <Link to={`/courses/${course.id}`} className="text-decoration-none text-black">{course.title}</Link>
                         </ListGroup.Item>
                     ))}
                 </ListGroup>

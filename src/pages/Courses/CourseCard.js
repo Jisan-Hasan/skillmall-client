@@ -15,7 +15,7 @@ const CourseCard = ({ course }) => {
                         Some quick example text to build on the card title and
                         make up the bulk of the card's content.
                     </Card.Text>
-                    <Button variant="primary"><Link className="text-decoration-none text-white" to={`/course/${course.id}`}>See Details</Link></Button>
+                    <Button variant="primary"><Link className="text-decoration-none text-white" to={`/courses/${course.id}`}>See Details</Link></Button>
                 </Card.Body>
             </Card>
         </Col>
