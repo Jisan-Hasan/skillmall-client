@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext);
+    const {createUser, error, setError} = useContext(AuthContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,9 +20,11 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            setError('');
         })
         .catch(e => {
             console.log(e);
+            setError(e.message);
         })
 
         console.log(name, photoURL, email, password);
@@ -76,7 +78,7 @@ const Register = () => {
             <Button variant="primary" type="submit">
                 Register
             </Button>
-            <Form.Text className="text-danger mt-4 d-block">error</Form.Text>
+            <Form.Text className="text-danger mt-4 d-block">{error}</Form.Text>
         </Form>
     );
 };

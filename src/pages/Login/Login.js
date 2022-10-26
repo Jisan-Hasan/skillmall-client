@@ -1,16 +1,20 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 
 const Login = () => {
-    const { providerLogin, signIn } = useContext(AuthContext);
+    const { providerLogin, signIn , error, setError} = useContext(AuthContext);
 
     const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+    console.log(from);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,10 +27,12 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                navigate('/');
+                setError('');
+                navigate(`${from}`, {replace: true});
             })
             .catch((e) => {
                 console.log(e);
+                setError(e.message);
             });
 
         console.log(email, password);
@@ -38,9 +44,12 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
+                setError('');
+                navigate(from, {replace: true});
             })
             .catch((e) => {
                 console.log(e);
+                setError(e.message);
             });
     };
     return (
@@ -72,7 +81,7 @@ const Login = () => {
             <Button variant="primary" type="submit">
                 Submit
             </Button>
-            <Form.Text className="text-danger mt-4 d-block">error</Form.Text>
+            <Form.Text className="text-danger mt-4 d-block">{error}</Form.Text>
 
             <div className="text-center mt-4">
                 <p>or sign up with:</p>
