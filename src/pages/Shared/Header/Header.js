@@ -1,12 +1,18 @@
-import React from "react";
-import { useContext } from "react";
-import { Container, Image, Nav, Navbar } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, Container, Image, Nav, Navbar } from "react-bootstrap";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {})
+            .catch((e) => {
+                console.log(e);
+            });
+    };
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
@@ -40,21 +46,29 @@ const Header = () => {
                         </Link>
                     </Nav>
                     <Nav className="fs-5">
-                        <Nav.Link href="#deets">
-                            {" "}
-                            {user?.displayName ? user?.displayName : "Login"}
-                        </Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-                            {user?.photoURL ? (
-                                <Image
-                                    style={{ height: "40px" }}
-                                    src={user.photoURL}
-                                    roundedCircle
-                                />
+                        <Nav>
+                            {user?.uid ? (
+                                <>
+                                    {user?.photoURL ? (
+                                        <Image
+                                            style={{ height: "40px" }}
+                                            src={user.photoURL}
+                                            roundedCircle
+                                        />
+                                    ) : (
+                                        <FaUser />
+                                    )}{" "}
+                                    <Button onClick={handleSignOut}>
+                                        Sign Out
+                                    </Button>
+                                </>
                             ) : (
-                                <FaUser />
+                                <Link to="/login">Login</Link>
                             )}
-                        </Nav.Link>
+                        </Nav>
+                        {/* <Nav.Link eventKey={2} href="#memes">
+                            {}
+                        </Nav.Link> */}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

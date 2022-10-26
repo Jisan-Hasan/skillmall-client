@@ -3,11 +3,34 @@ import React from "react";
 import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
+
 const Login = () => {
-    const { providerLogin } = useContext(AuthContext);
+    const { providerLogin, signIn } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signIn(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                navigate('/');
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+
+        console.log(email, password);
+    };
 
     const googleProvider = new GoogleAuthProvider();
     const handleGoogleSignIn = () => {
@@ -22,6 +45,7 @@ const Login = () => {
     };
     return (
         <Form
+            onSubmit={handleSubmit}
             style={{ minWidth: "350px" }}
             className="container-lg w-25 my-5 py-5"
         >
@@ -48,7 +72,7 @@ const Login = () => {
             <Button variant="primary" type="submit">
                 Submit
             </Button>
-            <Form.Text className="text-muted mt-4 d-block">error</Form.Text>
+            <Form.Text className="text-danger mt-4 d-block">error</Form.Text>
 
             <div className="text-center mt-4">
                 <p>or sign up with:</p>
