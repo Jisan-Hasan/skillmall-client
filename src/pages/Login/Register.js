@@ -23,7 +23,7 @@ const Register = () => {
                     <Form.Control name="password" type="password" placeholder="Password" required />
                 </Form.Group>
                 <Form.Text className="text-muted mb-4 d-block">
-                    Already have an account? <Link to="/register">Login</Link>
+                    Already have an account? <Link to="/login">Login</Link>
                 </Form.Text>
                 <Button variant="primary" type="submit">
                     Register
