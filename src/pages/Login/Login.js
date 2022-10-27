@@ -1,19 +1,18 @@
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
-
 const Login = () => {
-    const { providerLogin, signIn , error, setError} = useContext(AuthContext);
+    const { providerLogin, signIn, error, setError } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
     const location = useLocation();
 
-    const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || "/";
     console.log(from);
 
     const handleSubmit = (event) => {
@@ -27,8 +26,8 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                setError('');
-                navigate(`${from}`, {replace: true});
+                setError("");
+                navigate(`${from}`, { replace: true });
             })
             .catch((e) => {
                 console.log(e);
@@ -44,8 +43,22 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                setError('');
-                navigate(from, {replace: true});
+                setError("");
+                navigate(from, { replace: true });
+            })
+            .catch((e) => {
+                console.log(e);
+                setError(e.message);
+            });
+    };
+    const githubProvider = new GithubAuthProvider();
+    const handleGithubSignIn = () => {
+        providerLogin(githubProvider)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                setError("");
+                navigate(from, { replace: true });
             })
             .catch((e) => {
                 console.log(e);
@@ -94,6 +107,7 @@ const Login = () => {
                 </button>
 
                 <button
+                    onClick={handleGithubSignIn}
                     type="button"
                     className="btn btn-link btn-floating mx-1"
                 >

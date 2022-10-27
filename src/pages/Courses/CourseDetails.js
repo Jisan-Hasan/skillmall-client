@@ -51,7 +51,7 @@ const CourseDetails = () => {
                 </ul>
                 <Link
                     size="lg"
-                    to="/courses/checkout"
+                    to={`/courses/checkout/${id}`}
                     className="text-decoration-none text-white"
                 >
                     <div className="d-grid gap-2 mt-5">

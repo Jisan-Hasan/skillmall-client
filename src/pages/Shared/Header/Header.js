@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-import { Button, Container, Image, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Form, Image, Nav, Navbar } from "react-bootstrap";
 import { FaLightbulb, FaRegLightbulb, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Header = () => {
-    const [theme, setTheme] = useState(true);
+    // const [theme, setTheme] = useState(true);
     const { user, logOut } = useContext(AuthContext);
     const handleSignOut = () => {
         logOut()
@@ -33,17 +33,17 @@ const Header = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto fs-5">
+                    <Nav className="me-auto ms-4 fs-5">
                         <Link
-                            className="me-3 text-decoration-none"
+                            className="me-4 text-decoration-none text-warning"
                             to="/courses"
                         >
                             Courses
                         </Link>
-                        <Link className="me-3 text-decoration-none" to="/blog">
+                        <Link className="me-4 text-decoration-none text-warning" to="/blog">
                             Blog
                         </Link>
-                        <Link className="text-decoration-none" to="/faq">
+                        <Link className="text-decoration-none text-warning" to="/faq">
                             FAQ
                         </Link>
                     </Nav>
@@ -66,23 +66,27 @@ const Header = () => {
                                         <FaUser />
                                     )}
 
-                                    <Button onClick={handleSignOut}>
+                                    <Button variant="danger" onClick={handleSignOut}>
                                         Sign Out
                                     </Button>
                                 </>
                             ) : (
-                                <Button><Link className="text-white text-decoration-none" to="/login">Login</Link></Button>
+                                <Button>
+                                    <Link
+                                        className="text-white text-decoration-none"
+                                        to="/login"
+                                    >
+                                        Login
+                                    </Link>
+                                </Button>
                             )}
-                            <Button
-                                onClick={() => setTheme(!theme)}
-                                className="mx-2"
-                            >
-                                {theme ? (
-                                    <FaRegLightbulb className="text-white" />
-                                ) : (
-                                    <FaLightbulb className="text-white" />
-                                )}
-                            </Button>
+                            <Form className="mx-2 mt-1">
+                                <Form.Check
+                                    type="switch"
+                                    id="custom-switch"
+                                    label="Check this switch"
+                                />
+                            </Form>
                         </Nav>
                         {/* <Nav.Link eventKey={2} href="#memes">
                             {}

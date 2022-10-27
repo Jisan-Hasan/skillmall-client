@@ -32,17 +32,17 @@ const Footer = () => {
                         <h5>Important Links</h5>
                         <div className="mt-3">
                             <p>
-                                <Link className="text-decoration-none text-white">
+                                <Link to="/courses" className="text-decoration-none text-white">
                                     Courses
                                 </Link>
                             </p>
                             <p>
-                                <Link className="text-decoration-none text-white">
+                                <Link to="/blog" className="text-decoration-none text-white">
                                     Blogs
                                 </Link>
                             </p>
                             <p>
-                                <Link className="text-decoration-none text-white">
+                                <Link to="/faq" className="text-decoration-none text-white">
                                     FAQ
                                 </Link>
                             </p>
