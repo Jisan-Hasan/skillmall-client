@@ -4,19 +4,7 @@ import { useLoaderData } from "react-router-dom";
 
 const Checkout = () => {
     const course = useLoaderData();
-    const {
-        id,
-        title,
-        instructor,
-        rating,
-        students,
-        time,
-        lesson,
-        fee,
-        img,
-        details,
-        content,
-    } = course;
+    const { title, instructor, fee } = course;
     return (
         <Card className="mt-5">
             <Card.Body>
@@ -24,9 +12,9 @@ const Checkout = () => {
                 <Card.Subtitle className="my-2 text-muted">
                     Instructor: {instructor}
                 </Card.Subtitle>
-                <Card.Text className="mt-4">
-                    <h4>Fee: ${fee}</h4>
-                </Card.Text>
+
+                <h4 className="mt-3">Fee: ${fee}</h4>
+
                 <Form className="mt-4">
                     <h5>Please Select your payment option: </h5>
                     <div className="mb-3">

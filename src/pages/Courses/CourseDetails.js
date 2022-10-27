@@ -1,9 +1,19 @@
 import React from "react";
+import { useRef } from "react";
 import { Button, Container, Image, Navbar } from "react-bootstrap";
 import { FaRegFilePdf } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
+import { useReactToPrint } from "react-to-print";
+
+
 
 const CourseDetails = () => {
+    const componentRef = useRef();
+    const handlPrint = useReactToPrint({
+        content: () => componentRef.current,
+        documentTitle: 'Course Details',
+        onAfterPrint: () => {}
+    })
     const course = useLoaderData();
     const {
         id,
@@ -26,9 +36,9 @@ const CourseDetails = () => {
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
-                            <Button variant="white">
-                                <FaRegFilePdf className="text-white" />
-                            </Button>
+                                <Button onClick={handlPrint} variant="white">
+                                    <FaRegFilePdf className="text-white" />
+                                </Button>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
@@ -36,7 +46,8 @@ const CourseDetails = () => {
             <div className="container-fluid">
                 <Image className="img-fluid mx-auto" src={img} />
             </div>
-            <div>
+            <div ref={componentRef}>
+                <h3>{title}</h3>
                 <h5>{details}</h5>
                 <p>
                     Instructor: <span className="">{instructor}</span>

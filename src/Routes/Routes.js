@@ -6,6 +6,7 @@ import Checkout from "../pages/Checkout/Checkout";
 import CourseDetails from "../pages/Courses/CourseDetails";
 import Courses from "../pages/Courses/Courses";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import FAQ from "../pages/FAQ/FAQ";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
@@ -34,24 +35,28 @@ export const routes = createBrowserRouter([
                 element: <Blog />,
             },
             {
+                path: "/faq",
+                element: <FAQ />,
+            },
+            {
                 path: "/courses",
                 element: <CourseLayout />,
                 children: [
                     {
                         index: true,
                         element: <Courses />,
-                        loader: () => fetch("http://localhost:5000/allcourses"),
+                        loader: () => fetch("https://skillmall.vercel.app/allcourses"),
                     },
                     {
                         path: "/courses/:id",
                         loader: ({ params }) =>
-                            fetch(`http://localhost:5000/course/${params.id}`),
+                            fetch(`https://skillmall.vercel.app/course/${params.id}`),
                         element: <CourseDetails />,
                     },
                     {
                         path: "/courses/checkout/:id",
                         loader: ({ params }) =>
-                            fetch(`http://localhost:5000/course/${params.id}`),
+                            fetch(`https://skillmall.vercel.app/course/${params.id}`),
                         element: (
                             <PrivateRoutes>
                                 <Checkout />

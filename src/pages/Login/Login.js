@@ -13,7 +13,7 @@ const Login = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
-    console.log(from);
+    // console.log(from);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -24,17 +24,17 @@ const Login = () => {
         signIn(email, password)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 form.reset();
                 setError("");
                 navigate(`${from}`, { replace: true });
             })
             .catch((e) => {
-                console.log(e);
+                // console.log(e);
                 setError(e.message);
             });
 
-        console.log(email, password);
+        // console.log(email, password);
     };
 
     const googleProvider = new GoogleAuthProvider();
@@ -42,12 +42,12 @@ const Login = () => {
         providerLogin(googleProvider)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 setError("");
                 navigate(from, { replace: true });
             })
             .catch((e) => {
-                console.log(e);
+                // console.log(e);
                 setError(e.message);
             });
     };
@@ -56,12 +56,12 @@ const Login = () => {
         providerLogin(githubProvider)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 setError("");
                 navigate(from, { replace: true });
             })
             .catch((e) => {
-                console.log(e);
+                // console.log(e);
                 setError(e.message);
             });
     };

@@ -8,7 +8,7 @@ import {
     FaPhoneAlt,
     FaTwitch,
     FaTwitterSquare,
-    FaYoutubeSquare,
+    FaYoutubeSquare
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const Footer = () => {
                     <div>
                         <img
                             className="me-1"
-                            src="robot-1.png"
+                            src="study.png"
                             alt="logo"
                             width="80px"
                             height="80px"

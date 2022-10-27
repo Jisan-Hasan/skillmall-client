@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 const CoursesLeftNav = () => {
     const [courses, setCourses] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/courses")
+        fetch("https://skillmall.vercel.app/courses")
             .then((res) => res.json())
             .then((data) => setCourses(data))
             .catch((error) => {
                 console.log(error);
             });
     }, []);
-    console.log(courses);
+    // console.log(courses);
     return (
         <div>
             <h4>All Courses</h4>

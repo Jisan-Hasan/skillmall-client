@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { useState } from "react";
 import { Button, Container, Form, Image, Nav, Navbar } from "react-bootstrap";
-import { FaLightbulb, FaRegLightbulb, FaUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+
 
 const Header = () => {
     // const [theme, setTheme] = useState(true);
@@ -18,19 +18,19 @@ const Header = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand
-                    href="#home"
-                    className="fs-1 d-flex align-items-center"
+                <Link
+                    to="/"
+                    className="fs-1 d-flex align-items-center text-white text-decoration-none"
                 >
                     <img
                         className="me-1"
-                        src="robot-1.png"
+                        src="study.png"
                         alt="logo"
                         width="60px"
                         height="40px"
                     />
                     SkillMall
-                </Navbar.Brand>
+                </Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto ms-4 fs-5">

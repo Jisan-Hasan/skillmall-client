@@ -19,13 +19,13 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 form.reset();
                 setError("");
                 handleUpdateUserProfile(name, photoURL);
             })
             .catch((e) => {
-                console.log(e);
+                // console.log(e);
                 setError(e.message);
             });
 
